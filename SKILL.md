@@ -11,8 +11,6 @@ description: |
   - 定时任务/周期性任务的结果汇报
   - 用户要求"完成后通知我"、"完成后发邮件"
   - 任何向用户发送任务相关邮件的场景
-  
-  注意：IMAP 读取邮件被 163 服务器拦截（Unsafe Login），但 SMTP 发邮件功能正常。
 ---
 
 # Task Notifier — 任务通知技能
@@ -25,29 +23,29 @@ description: |
 
 ### 快速发送
 
-直接调用脚本，无需额外参数（使用默认配置的 163 邮箱）：
+直接调用脚本，无需额外参数：
 
-```javascript
-// 发送纯文本通知
-node C:\Users\黄兴\.qclaw\skills\task-notifier\scripts\send_notification.cjs \
-  --to henry861500x@163.com \
+```bash
+# 发送纯文本通知
+node scripts/send_notification.cjs \
+  --to 收件人@example.com \
   --subject "任务完成：数据整理报告" \
   --body "已完成所有邮件分类统计，共处理XX封邮件..."
 
-// 发送 HTML 精美邮件（推荐）
-node C:\Users\黄兴\.qclaw\skills\task-notifier\scripts\send_notification.cjs \
-  --to henry861500x@163.com \
+# 发送 HTML 精美邮件（推荐）
+node scripts/send_notification.cjs \
+  --to 收件人@example.com \
   --subject "✅ 任务完成：数据整理报告" \
   --body "已完成所有邮件分类统计" \
   --html
 
-// 发送带附件的通知
-node C:\Users\黄兴\.qclaw\skills\task-notifier\scripts\send_notification.cjs \
-  --to henry861500x@163.com \
+# 发送带附件的通知
+node scripts/send_notification.cjs \
+  --to 收件人@example.com \
   --subject "📊 今日数据报告" \
   --body "请查看附件中的详细数据" \
-  --attach "C:\Users\黄兴\Downloads\report.xlsx" \
-  --attach "C:\Users\黄兴\Documents\summary.pdf"
+  --attach "report.xlsx" \
+  --attach "summary.pdf"
 ```
 
 ### 参数说明
@@ -75,12 +73,12 @@ node C:\Users\黄兴\.qclaw\skills\task-notifier\scripts\send_notification.cjs \
 
 ## 配置文件
 
-邮件发送依赖 `163-email.env` 配置文件：
+邮件发送依赖 `.env` 配置文件：
 
 ```
 位置（按优先级）：
 1. --config 参数指定路径
-2. C:\Users\黄兴\.qclaw\workspace\163-email.env
+2. ~/.qclaw/workspace/163-email.env
 3. 技能目录内的 163-email.env
 ```
 
@@ -112,6 +110,6 @@ SMTP_PASS=你的授权码
 
 ## 错误处理
 
-- **找不到 .env**：提示用户先配置邮箱（`163-email.env`）
+- **找不到 .env**：提示用户先配置邮箱（`.env`）
 - **SMTP 连接失败**：输出具体错误信息，说明可能是授权码过期
 - **附件不存在**：警告但继续发送邮件
