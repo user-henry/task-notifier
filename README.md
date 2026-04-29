@@ -23,20 +23,20 @@ skillhub_install install_skill task-notifier
 ```bash
 # 纯文本通知
 node scripts/send_notification.cjs \
-  --to henry861500x@163.com \
+  --to 收件人@example.com \
   --subject "✅ 任务完成" \
   --body "已完成数据整理，共处理100封邮件"
 
 # HTML 精美邮件
 node scripts/send_notification.cjs \
-  --to henry861500x@163.com \
+  --to 收件人@example.com \
   --subject "✅ 任务完成" \
   --body "已完成数据整理" \
   --html
 
 # 带附件
 node scripts/send_notification.cjs \
-  --to henry861500x@163.com \
+  --to 收件人@example.com \
   --subject "📊 数据报告" \
   --body "请查看附件" \
   --attach "report.xlsx" \
@@ -45,7 +45,7 @@ node scripts/send_notification.cjs \
 
 ## 配置
 
-需要在同目录或 `C:\Users\黄兴\.qclaw\workspace\` 下放置 `163-email.env`：
+需要在同目录或 `~/.qclaw/workspace/` 下放置 `163-email.env`：
 
 ```env
 SMTP_HOST=smtp.163.com
@@ -60,6 +60,8 @@ SMTP_PASS=你的授权码
 ```
 task-notifier/
 ├── SKILL.md                      # Skill 描述与使用指南
+├── README.md                     # 项目说明
+├── .gitignore                    # Git 忽略配置
 ├── scripts/
 │   └── send_notification.cjs    # 通知发送脚本
 ├── references/                   # 参考文档（待补充）
