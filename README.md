@@ -1,3 +1,5 @@
+**简体中文** | [English](README.en.md)
+
 # task-notifier
 
 任务完成通知 OpenClaw Skill — 自动通过邮件将任务成果发送给用户。
